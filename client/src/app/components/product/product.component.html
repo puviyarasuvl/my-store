@@ -1,0 +1,26 @@
+<div class="card">
+    <span class="border border-dark">
+        <a
+            routerLink="/product-details"
+            [queryParams]="{ productId: product.id }"
+            ><img src="{{ product.url }}" class="card-img-top" alt="..."
+        /></a>
+    </span>
+    <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">$ {{ product.price }}</p>
+        <form (ngSubmit)="addProductToCart(product)">
+            <input
+                class="qty-input"
+                type="number"
+                id="quantity"
+                name="quantity"
+                min="1"
+                max="100"
+                [(ngModel)]="quantity"
+            />
+            <br />
+            <button type="submit" class="btn btn-primary">Add to cart</button>
+        </form>
+    </div>
+</div>

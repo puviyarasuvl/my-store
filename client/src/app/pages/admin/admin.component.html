@@ -1,0 +1,42 @@
+<div class="admin">
+    <p>
+        <button
+            type="button"
+            class="btn btn-success"
+            (click)="toggleCollapseAdd()"
+            [attr.aria-expanded]="!isAddCollapsed"
+            aria-controls="addProduct"
+        >
+            Add Product
+        </button>
+        <button
+            type="button"
+            class="btn btn-danger"
+            (click)="toggleCollapseDelete()"
+            [attr.aria-expanded]="!isDeleteCollapsed"
+            aria-controls="deleteProduct"
+        >
+            Delete Product
+        </button>
+    </p>
+    <div
+        #collapseAdd="ngbCollapse"
+        id="addProduct"
+        [(ngbCollapse)]="isAddCollapsed"
+    >
+        <div class="card">
+            <div class="card-body"><app-add-product></app-add-product></div>
+        </div>
+    </div>
+    <div
+        #collapseDelete="ngbCollapse"
+        id="deleteProduct"
+        [(ngbCollapse)]="isDeleteCollapsed"
+    >
+        <div class="card">
+            <div class="card-body">
+                <app-delete-product></app-delete-product>
+            </div>
+        </div>
+    </div>
+</div>

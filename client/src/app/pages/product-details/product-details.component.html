@@ -1,0 +1,94 @@
+<div class="pdetails">
+    <div
+        class="alert alert-success alert-dismissible fade show"
+        role="alert"
+        *ngIf="addedToCart"
+    >
+        <strong>Product successfully added to cart.!</strong>
+        <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+            (click)="resetAddedToCart()"
+        >
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div
+        class="alert alert-danger alert-dismissible fade show"
+        role="alert"
+        *ngIf="addError"
+    >
+        <strong>Add to Cart failed.!</strong> {{ addError }}
+        <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+            (click)="resetAddError()"
+        >
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div
+        class="alert alert-danger alert-dismissible fade show"
+        role="alert"
+        *ngIf="getError"
+    >
+        <strong>Failed to get product details</strong> {{ getError }}
+        <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+            (click)="resetGetError()"
+        >
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <ngx-spinner
+        bdColor="rgba(51, 51, 51, 0.8)"
+        size="default"
+        type="ball-spin-clockwise"
+    >
+        <p style="color: white">Adding product to cart...</p>
+    </ngx-spinner>
+
+    <div *ngIf="!getError">
+        <div class="card border-light">
+            <div class="row no-gutters">
+                <div class="col-md-6">
+                    <img src="{{ product.url }}" alt="" />
+                </div>
+                <div class="col-md-6 justify-content-center align-self-center">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ product.name }}</h2>
+                        <h6 class="card-text">$ {{ product.price }}</h6>
+                        <p class="card-text">
+                            {{ product.description }}
+                        </p>
+                        <form (ngSubmit)="addProductToCart(product)">
+                            <input
+                                class="qty-input"
+                                type="number"
+                                id="quantity"
+                                name="quantity"
+                                min="1"
+                                max="100"
+                                [(ngModel)]="quantity"
+                            />
+                            <br />
+                            <button type="submit" class="btn btn-primary">
+                                Add to cart
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

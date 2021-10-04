@@ -1,0 +1,15 @@
+.card {
+    text-align: center;
+}
+
+img {
+    padding: 15px;
+}
+
+.qty-input {
+    margin-bottom: 16px;
+}
+
+input {
+    text-align: center;
+}

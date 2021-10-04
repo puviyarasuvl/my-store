@@ -1,0 +1,136 @@
+<div class="checkout">
+    <ngx-spinner
+        bdColor="rgba(51, 51, 51, 0.8)"
+        size="default"
+        type="ball-spin-clockwise"
+    >
+        <p style="color: white">Adding new product...</p>
+    </ngx-spinner>
+
+    <div
+        class="alert alert-danger alert-dismissible fade show"
+        role="alert"
+        *ngIf="orderError"
+    >
+        <strong>{{ orderError }}</strong>
+        <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+            (click)="resetOrderError()"
+        >
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <form #form="ngForm" (ngSubmit)="placeOrder()">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                placeholder="Enter name"
+                [(ngModel)]="name"
+                required
+            />
+        </div>
+        <div class="form-group">
+            <label for="inputAddress">Address Line 1</label>
+            <input
+                type="text"
+                class="form-control"
+                id="inputAddress"
+                placeholder="House No., Floor No., Apartment or Studio"
+                name="address1"
+                [(ngModel)]="address1"
+                required
+            />
+        </div>
+        <div class="form-group">
+            <label for="inputAddress2">Address 2</label>
+            <input
+                type="text"
+                class="form-control"
+                id="inputAddress2"
+                placeholder="Street"
+                name="address2"
+                [(ngModel)]="address2"
+                required
+            />
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputCity">City</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="inputCity"
+                    name="city"
+                    [(ngModel)]="city"
+                    required
+                />
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputState">State</label>
+                <select
+                    id="inputState"
+                    class="form-control"
+                    name="select"
+                    [(ngModel)]="state"
+                    required
+                >
+                    <option>California</option>
+                    <option>Texas</option>
+                    <option>Washington</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputZip">Zip</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="inputZip"
+                    [(ngModel)]="zip"
+                    name="zip"
+                    required
+                    pattern="^([1-9][0-9]*)$"
+                    #zipPattern="ngModel"
+                />
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="cardno">Credit Card Number</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="cardno"
+                    placeholder="0000 0000 0000 0000"
+                    [(ngModel)]="card"
+                    name="card"
+                    required
+                    pattern="^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$"
+                    #cardPattern="ngModel"
+                />
+            </div>
+        </div>
+
+        <div class="text-danger" *ngIf="form.invalid && form.dirty">
+            <div *ngIf="cardPattern.errors?.pattern">
+                Please enter valid card number
+            </div>
+            <div *ngIf="zipPattern.errors?.pattern">
+                Please enter valid zip code
+            </div>
+            Please provide all the information to complete the order
+        </div>
+        <br />
+
+        <button type="submit" [disabled]="form.invalid" class="btn btn-primary">
+            Place Order
+        </button>
+    </form>
+</div>

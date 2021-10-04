@@ -1,0 +1,8 @@
+.container {
+    justify-content: flex-start;
+}
+
+.h1 {
+    font-family: 'Lobster';
+    font-size: 2.5rem;
+}

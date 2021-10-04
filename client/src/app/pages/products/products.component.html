@@ -1,0 +1,75 @@
+<div class="product">
+    <div
+        class="alert alert-success alert-dismissible fade show"
+        role="alert"
+        *ngIf="addedToCart"
+    >
+        <strong>Product successfully added to cart.!</strong>
+        <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+            (click)="resetAddedToCart()"
+        >
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div
+        class="alert alert-danger alert-dismissible fade show"
+        role="alert"
+        *ngIf="addError"
+    >
+        <strong>Add to Cart failed.!</strong> {{ addError }}
+        <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+            (click)="resetAddError()"
+        >
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div *ngIf="!getError">
+        <div class="row">
+            <div
+                class="col-lg-4 col-md-12 mb-4 pb-5 mb-lg-0"
+                *ngFor="let product of products"
+            >
+                <app-product
+                    [product]="product"
+                    (addToCartSuccess)="addToCartSuccess()"
+                    (addToCartError)="addToCartError($event)"
+                ></app-product>
+            </div>
+        </div>
+    </div>
+
+    <ngx-spinner
+        bdColor="rgba(51, 51, 51, 0.8)"
+        size="default"
+        type="ball-spin-clockwise"
+    >
+        <p style="color: white">Loading...</p>
+    </ngx-spinner>
+
+    <div
+        class="alert alert-danger alert-dismissible fade show"
+        role="alert"
+        *ngIf="getError"
+    >
+        <strong>{{ getError }}</strong>
+        <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+            (click)="resetGetError()"
+        >
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>

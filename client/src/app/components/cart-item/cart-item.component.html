@@ -1,0 +1,36 @@
+<div *ngIf="!getError">
+    <div class="card border-light">
+        <div class="row no-gutters">
+            <div class="col-md-6">
+                <img src="{{ product.url }}" alt="" />
+            </div>
+            <div class="col-md-6 justify-content-center align-self-center">
+                <div class="card-body">
+                    <h6 class="card-title">{{ product.name }}</h6>
+                    <p class="card-text">$ {{ product.price }}</p>
+
+                    <form>
+                        <input
+                            class="qty-input"
+                            type="number"
+                            id="quantity"
+                            name="quantity"
+                            min="0"
+                            max="100"
+                            [(ngModel)]="productCart.quantity"
+                            (ngModelChange)="qty.emit(productCart)"
+                        />
+                        <br />
+
+                        <button
+                            class="btn btn-danger"
+                            (click)="removeItem.emit(productCart)"
+                        >
+                            Remove item
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="cart">
+    <ngx-spinner
+        bdColor="rgba(51, 51, 51, 0.8)"
+        size="default"
+        type="ball-spin-clockwise"
+    >
+        <p style="color: white">Loading cart...</p>
+    </ngx-spinner>
+
+    <div
+        class="alert alert-danger alert-dismissible fade show"
+        role="alert"
+        *ngIf="getError"
+    >
+        <strong>Cart is empty..</strong>
+        <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+        ></button>
+    </div>
+
+    <div
+        class="alert alert-danger alert-dismissible fade show"
+        role="alert"
+        *ngIf="updateError"
+    >
+        <strong>Failed to update quantity</strong> {{ updateError }}
+        <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+            (click)="resetUpdateError()"
+        >
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="row" *ngIf="cartLoaded && !getError">
+        <div class="col-md-6">
+            <div class="pb-5" *ngFor="let product of cart.products">
+                <app-cart-item
+                    [productCart]="product"
+                    (qty)="updateQuantity($event)"
+                    (removeItem)="removeProduct($event)"
+                ></app-cart-item>
+            </div>
+        </div>
+        <div class="col-md-6 total-col">
+            <h3>Total : ${{ cart.total }}</h3>
+            <br />
+
+            <a routerLink="/checkout" [queryParams]="{ orderId: cart.orderId }">
+                <button type="button" class="btn btn-dark">Checkout</button>
+            </a>
+        </div>
+    </div>
+</div>

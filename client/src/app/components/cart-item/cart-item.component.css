@@ -1,0 +1,12 @@
+img {
+    max-width: 250px;
+    border-radius: 10px;
+}
+
+.card-body {
+    padding-left: 50px;
+}
+
+input {
+    margin-bottom: 10px;
+}

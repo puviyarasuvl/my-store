@@ -1,0 +1,48 @@
+<div class="navbar-nav mr-auto ml-5">
+    <div class="nav-item px-3">
+        <a
+            routerLink="/"
+            class="nav-link"
+            routerLinkActive="router-link-exact-active"
+            [routerLinkActiveOptions]="{ exact: true }"
+        >
+            Products
+        </a>
+    </div>
+    <div class="nav-item px-3">
+        <a
+            routerLink="/profile"
+            class="nav-link"
+            routerLinkActive="router-link-exact-active"
+        >
+            Profile
+        </a>
+    </div>
+    <div class="nav-item px-3">
+        <a
+            routerLink="/cart"
+            class="nav-link"
+            routerLinkActive="router-link-exact-active"
+        >
+            Cart
+        </a>
+    </div>
+    <div class="nav-item px-3">
+        <a
+            routerLink="/orders"
+            class="nav-link"
+            routerLinkActive="router-link-exact-active"
+        >
+            Orders
+        </a>
+    </div>
+    <div class="nav-item px-3" *ngIf="email === 'admin@mystore.com'">
+        <a
+            routerLink="/admin"
+            class="nav-link"
+            routerLinkActive="router-link-exact-active"
+        >
+            Admin
+        </a>
+    </div>
+</div>
