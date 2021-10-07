@@ -15,7 +15,7 @@ if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
 var app = express_1.default();
 var port = 3000;
 app.use(helmet_1.default());
-app.use(cors_1.default({ origin: process.env.CLIENT_ORIGIN_URL }));
+app.use(cors_1.default());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use('/api', index_1.default);
