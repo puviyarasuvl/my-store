@@ -1,6 +1,13 @@
 node_modules/
+migrations/
+pg-init-scripts/
+spec/
+src/
+docker-compose.yaml
+README.md
+tsconfig.json
 .env
-# Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
