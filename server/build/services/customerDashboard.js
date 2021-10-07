@@ -59,7 +59,7 @@ var CustomerDashboard = /** @class */ (function () {
                         _a.label = 2;
                     case 2:
                         _a.trys.push([2, 4, , 5]);
-                        sql = 'SELECT userId, orderId, status, productId, quantity, total, createdDate FROM orders INNER JOIN order_products on orders.id=order_products.orderid WHERE userId=$1 AND status=$2';
+                        sql = 'SELECT userId, orderId, status, productId, quantity, total, createdDate FROM orders INNER JOIN order_products on orders.id=order_products.orderid WHERE userId=$1 AND status=$2 ORDER BY order_products.id ASC';
                         return [4 /*yield*/, conn.query(sql, [userId, 'open'])];
                     case 3:
                         result = _a.sent();
