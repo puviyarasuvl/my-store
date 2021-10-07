@@ -7,7 +7,7 @@
         "build": "npx tsc",
         "jasmine": "jasmine",
         "test": "npm run build && set ENV=test&& db-migrate --env test down -c 4 && db-migrate --env test up && npm run jasmine && db-migrate --env test down -c 4",
-        "start": "nodemon --exec npx ts-node src/index.ts"
+        "start": "build/index.js"
     },
     "author": "",
     "license": "ISC",
