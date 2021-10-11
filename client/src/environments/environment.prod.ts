@@ -1,4 +1,4 @@
-import auth from '../../auth_config_prod.json';
+import auth from '../../auth_config.json';
 
 let domain = auth.domain;
 let clientId = auth.clientId;
