@@ -2,5 +2,5 @@
     "domain": "my-store-app.us.auth0.com",
     "clientId": "g0XDIKqiYwl5kHDu4JbQGLyr0JkMWhya",
     "audience": "https://my-store.com",
-    "serverUrl": "http://localhost:3000"
+    "serverUrl": "http://mystore-backend-dev.us-east-1.elasticbeanstalk.com"
 }
