@@ -13,12 +13,13 @@ if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
     throw 'Make sure you have AUTH0_DOMAIN, and AUTH0_AUDIENCE in your .env file';
 }
 var app = express_1.default();
-var port = 3000;
+var port = process.env.PORT || 3000;
 app.use(helmet_1.default());
 app.use(cors_1.default());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use('/api', index_1.default);
+console.log('Port ', process.env.PORT);
 app.listen(port, function () {
     console.log("Server started successfully at " + port);
 });

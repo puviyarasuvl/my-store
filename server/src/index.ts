@@ -10,8 +10,6 @@ if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
     throw 'Make sure you have AUTH0_DOMAIN, and AUTH0_AUDIENCE in your .env file';
 }
 
-console.log('PUVI. Port ', process.env.PORT);
-
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -23,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api', routes);
 
-console.log('PUVI. Port ', process.env.PORT);
+console.log('Port ', process.env.PORT);
 
 app.listen(port, () => {
     console.log(`Server started successfully at ${port}`);
