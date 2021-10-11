@@ -23,6 +23,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api', routes);
 
+console.log('PUVI. Port ', process.env.PORT);
+
 app.listen(port, () => {
     console.log(`Server started successfully at ${port}`);
 });
