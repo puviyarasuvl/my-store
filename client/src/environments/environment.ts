@@ -1,4 +1,4 @@
-let serverUrl = 'http://mystore-backend-dev.us-east-1.elasticbeanstalk.com';
+let serverUrl = 'http://localhost:3000';
 
 export const environment = {
     production: false,
