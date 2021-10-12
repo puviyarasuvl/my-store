@@ -1,18 +1,7 @@
-import auth from '../../auth_config.json';
-
-let domain = auth.domain;
-let clientId = auth.clientId;
-let audience = auth.audience;
-let serverUrl = auth.serverUrl;
+let serverUrl = 'http://mystore-backend-dev.us-east-1.elasticbeanstalk.com';
 
 export const environment = {
     production: false,
-    auth: {
-        domain,
-        clientId,
-        redirectUri: window.location.origin,
-        audience,
-    },
     dev: {
         serverUrl,
     },
