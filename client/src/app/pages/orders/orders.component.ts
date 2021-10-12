@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
+
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CompletedOrderDetails } from 'src/app/models/order';
 import { CartService } from 'src/app/services/cart.service';
@@ -16,30 +16,25 @@ export class OrdersComponent implements OnInit {
     getError: string = '';
 
     constructor(
-        public authService: AuthService,
         private spinnerService: NgxSpinnerService,
         private cartService: CartService
     ) {
-        this.orders = { userId: '', orders: [] };
+        this.orders = { userId: 'user@mystore.com', orders: [] };
     }
 
     ngOnInit(): void {
         this.spinnerService.show();
 
-        this.authService.user$.subscribe((profile) => {
-            this.email = profile?.email as string;
-
-            this.cartService.completedOrders(this.email).subscribe({
-                next: (res) => {
-                    this.orders = res;
-                    this.orderJson = JSON.stringify(res, null, 2);
-                    this.spinnerService.hide();
-                },
-                error: (error) => {
-                    this.getError = error;
-                    this.spinnerService.hide();
-                },
-            });
+        this.cartService.completedOrders(this.email).subscribe({
+            next: (res) => {
+                this.orders = res;
+                this.orderJson = JSON.stringify(res, null, 2);
+                this.spinnerService.hide();
+            },
+            error: (error) => {
+                this.getError = error;
+                this.spinnerService.hide();
+            },
         });
     }
 

@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CartService } from 'src/app/services/cart.service';
-import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
     selector: 'app-product-details',
@@ -24,8 +23,7 @@ export class ProductDetailsComponent implements OnInit {
         private route: ActivatedRoute,
         private productService: ProductService,
         private spinnerService: NgxSpinnerService,
-        private cartService: CartService,
-        public authService: AuthService
+        private cartService: CartService
     ) {
         this.product = {
             name: '',
@@ -38,10 +36,6 @@ export class ProductDetailsComponent implements OnInit {
 
     ngOnInit(): void {
         this.spinnerService.show();
-
-        this.authService.user$.subscribe((profile) => {
-            this.email = profile?.email as string;
-        });
 
         this.route.queryParams.subscribe((params) => {
             this.productId = params.productId;

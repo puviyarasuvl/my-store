@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderDetails } from 'src/app/models/order';
 import { CartService } from 'src/app/services/cart.service';
-import { AuthService } from '@auth0/auth0-angular';
+
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ProductCart } from 'src/app/models/product';
 
@@ -21,7 +21,7 @@ export class CartComponent implements OnInit {
 
     constructor(
         private cartSerivce: CartService,
-        public authService: AuthService,
+
         private spinnerService: NgxSpinnerService
     ) {
         this.cart = {
@@ -35,20 +35,12 @@ export class CartComponent implements OnInit {
                 },
             ],
             total: 0,
-            userId: '',
+            userId: 'user@mystore.com',
         };
     }
 
     ngOnInit(): void {
-        this.spinnerService.show();
-
-        this.authService.user$.subscribe((profile) => {
-            this.email = profile?.email as string;
-
-            this.spinnerService.hide();
-
-            this.showCart();
-        });
+        this.showCart();
     }
 
     showCart(): void {

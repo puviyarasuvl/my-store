@@ -8,7 +8,6 @@ import { OrderSuccessComponent } from './pages/order-success/order-success.compo
 import { OrdersComponent } from './pages/orders/orders.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { ProductsComponent } from './pages/products/products.component';
-import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
     {
@@ -17,24 +16,12 @@ const routes: Routes = [
         pathMatch: 'full',
     },
     {
-        path: 'profile',
-        component: ProfileComponent,
-        canActivate: [AuthGuard],
-    },
-    {
         path: 'cart',
         component: CartComponent,
-        canActivate: [AuthGuard],
     },
     {
         path: 'orders',
         component: OrdersComponent,
-        canActivate: [AuthGuard],
-    },
-    {
-        path: 'admin',
-        component: AdminComponent,
-        canActivate: [AuthGuard],
     },
     {
         path: 'product-details',
@@ -43,12 +30,10 @@ const routes: Routes = [
     {
         path: 'checkout',
         component: CheckoutComponent,
-        canActivate: [AuthGuard],
     },
     {
         path: 'order-success',
         component: OrderSuccessComponent,
-        canActivate: [AuthGuard],
     },
 ];
 

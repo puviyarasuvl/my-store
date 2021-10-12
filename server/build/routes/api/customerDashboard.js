@@ -40,17 +40,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
-var authenticator_1 = require("../../services/authenticator");
 var customerDashboard_1 = require("../../services/customerDashboard");
 var dashboardRouter = express_1.default.Router();
 var customerDashboard = new customerDashboard_1.CustomerDashboard();
+var userId = 'user@mystore.com';
 var currentOrder = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var result, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, customerDashboard.currentOrder(req.query.userID)];
+                return [4 /*yield*/, customerDashboard.currentOrder(userId)];
             case 1:
                 result = _a.sent();
                 res.send(result);
@@ -70,7 +70,7 @@ var completedOrders = function (req, res) { return __awaiter(void 0, void 0, voi
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, customerDashboard.completedOrders(req.query.userId)];
+                return [4 /*yield*/, customerDashboard.completedOrders(userId)];
             case 1:
                 result = _a.sent();
                 res.send(result);
@@ -84,10 +84,10 @@ var completedOrders = function (req, res) { return __awaiter(void 0, void 0, voi
         }
     });
 }); };
-dashboardRouter.get('/cart', authenticator_1.checkJwt, function (req, res) {
+dashboardRouter.get('/cart', function (req, res) {
     currentOrder(req, res);
 });
-dashboardRouter.get('/orders', authenticator_1.checkJwt, function (req, res) {
+dashboardRouter.get('/orders', function (req, res) {
     completedOrders(req, res);
 });
 exports.default = dashboardRouter;

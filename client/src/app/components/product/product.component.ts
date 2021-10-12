@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
-import { AuthService } from '@auth0/auth0-angular';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
@@ -14,11 +13,10 @@ export class ProductComponent implements OnInit {
     @Output() addToCartSuccess = new EventEmitter();
     @Output() addToCartError = new EventEmitter();
     quantity: number = 1;
-    email: string | undefined = '';
+    email: string | undefined = 'user@mystore.com';
 
     constructor(
         private cartService: CartService,
-        public authService: AuthService,
         private spinnerService: NgxSpinnerService
     ) {
         this.product = {
@@ -30,11 +28,7 @@ export class ProductComponent implements OnInit {
         };
     }
 
-    ngOnInit(): void {
-        this.authService.user$.subscribe((profile) => {
-            this.email = profile?.email;
-        });
-    }
+    ngOnInit(): void {}
 
     addProductToCart(product: Product): void {
         const productId = product.id as number;

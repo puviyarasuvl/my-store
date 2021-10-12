@@ -6,12 +6,11 @@ let audience = auth.audience;
 let serverUrl = auth.serverUrl;
 
 export const environment = {
-    production: true,
+    production: false,
     auth: {
         domain,
         clientId,
-        redirectUri:
-            'http://mystore-frontend.s3-website-us-east-1.amazonaws.com/callback',
+        redirectUri: window.location.origin,
         audience,
     },
     dev: {

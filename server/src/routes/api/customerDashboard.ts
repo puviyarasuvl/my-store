@@ -5,12 +5,11 @@ import { CustomerDashboard } from '../../services/customerDashboard';
 const dashboardRouter = express.Router();
 
 const customerDashboard = new CustomerDashboard();
+const userId: string = 'user@mystore.com';
 
 const currentOrder = async (req: express.Request, res: express.Response) => {
     try {
-        const result = await customerDashboard.currentOrder(
-            req.query.userID as string
-        );
+        const result = await customerDashboard.currentOrder(userId);
         res.send(result);
     } catch (err) {
         res.status(400);
@@ -20,9 +19,7 @@ const currentOrder = async (req: express.Request, res: express.Response) => {
 
 const completedOrders = async (req: express.Request, res: express.Response) => {
     try {
-        const result = await customerDashboard.completedOrders(
-            req.query.userId as string
-        );
+        const result = await customerDashboard.completedOrders(userId);
         res.send(result);
     } catch (err) {
         res.status(400);
@@ -30,11 +27,11 @@ const completedOrders = async (req: express.Request, res: express.Response) => {
     }
 };
 
-dashboardRouter.get('/cart', checkJwt, (req, res) => {
+dashboardRouter.get('/cart', (req, res) => {
     currentOrder(req, res);
 });
 
-dashboardRouter.get('/orders', checkJwt, (req, res) => {
+dashboardRouter.get('/orders', (req, res) => {
     completedOrders(req, res);
 });
 
