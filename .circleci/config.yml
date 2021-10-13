@@ -38,7 +38,15 @@ jobs:
             - image: cimg/base:stable
         # Add steps to the job
         steps:
+            - node/install
+            - checkout
             - aws-cli/setup
+            - run:
+                  name: 'Client/UI Install'
+                  command: 'npm run frontend:install'
+            - run:
+                  name: 'Client/UI Build'
+                  command: 'npm run frontend:build'
             - run:
                   name: 'Deploy Angular App'
                   command: 'npm run frontend:deploy'
