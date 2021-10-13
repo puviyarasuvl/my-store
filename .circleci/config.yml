@@ -11,7 +11,7 @@ orbs:
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-    build:
+    build-and-deploy:
         # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
         # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
         docker:
@@ -20,27 +20,13 @@ jobs:
         steps:
             - node/install
             - checkout
+            - aws-cli/setup
             - run:
                   name: 'Server Install'
                   command: 'npm run backend:install'
             - run:
                   name: 'Server Build'
                   command: 'npm run backend:build'
-            - run:
-                  name: 'Client/UI Install'
-                  command: 'npm run frontend:install'
-            - run:
-                  name: 'Client/UI Build'
-                  command: 'npm run frontend:build'
-    deploy:
-        # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-        docker:
-            - image: cimg/base:stable
-        # Add steps to the job
-        steps:
-            - node/install
-            - checkout
-            - aws-cli/setup
             - run:
                   name: 'Client/UI Install'
                   command: 'npm run frontend:install'
@@ -56,7 +42,4 @@ jobs:
 workflows:
     build-and-deploy:
         jobs:
-            - build
-            - deploy:
-                  requires:
-                      - build
+            - build-and-deploy
