@@ -7,7 +7,7 @@
         "build": "ng build",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
-        "deploy": "chmod +x ./scripts/deploy.sh && ./scripts/deploy.sh"
+        "deploy": "chmod +x scripts/deploy.sh && scripts/deploy.sh"
     },
     "private": true,
     "dependencies": {
