@@ -33,6 +33,10 @@ jobs:
                   name: 'Client/UI Build'
                   command: 'npm run frontend:build'
     deploy:
+        # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+        docker:
+            - image: cimg/base:stable
+        # Add steps to the job
         steps:
             - aws-cli/setup
             - run:
@@ -42,9 +46,9 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-    build-workflow:
+    build-and-deploy:
         jobs:
             - build
-    deploy-workflow:
-        jobs:
             - deploy
+                requires:
+                  - build
