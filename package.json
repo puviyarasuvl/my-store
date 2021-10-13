@@ -4,7 +4,7 @@
         "backend:build": "cd server && npm run build",
         "frontend:install": "cd client && npm install",
         "frontend:build": "cd client && npm run build",
-        "backend:deploy": "cd server && eb deploy",
+        "backend:deploy": "cd server && eb deploy $AWS_EB_ENV",
         "backend:health": "cd server && eb health",
         "frontend:deploy": "cd client && npm run deploy"
     }

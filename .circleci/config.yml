@@ -24,25 +24,25 @@ jobs:
             - aws-cli/setup
             - eb-cli/setup
             - run:
-                  name: 'Server Install'
+                  name: 'Installing Server Dependencies'
                   command: 'npm run backend:install'
             - run:
-                  name: 'Server Build'
+                  name: 'Building Server'
                   command: 'npm run backend:build'
             - run:
-                  name: 'Client/UI Install'
+                  name: 'Installing Client/UI Dependencies'
                   command: 'npm run frontend:install'
             - run:
-                  name: 'Client/UI Build'
+                  name: 'Building Client/UI'
                   command: 'npm run frontend:build'
             - run:
-                  name: 'Deploy Server'
+                  name: 'Deploying Server'
                   command: 'npm run backend:deploy'
             - run:
-                  name: 'Check Server Health'
+                  name: 'Checking Server Health'
                   command: 'npm run backend:health'
             - run:
-                  name: 'Deploy Angular App'
+                  name: 'Deploying Client/UI'
                   command: 'npm run frontend:deploy'
 
 # Invoke jobs via workflows
