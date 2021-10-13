@@ -7,6 +7,7 @@ version: 2.1
 orbs:
     node: circleci/node@4.7
     aws-cli: circleci/aws-cli@2.0.3
+    eb-cli: circleci/aws-elastic-beanstalk@2.0.1
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -21,6 +22,7 @@ jobs:
             - node/install
             - checkout
             - aws-cli/setup
+            - eb-cli/setup
             - run:
                   name: 'Server Install'
                   command: 'npm run backend:install'
@@ -33,6 +35,12 @@ jobs:
             - run:
                   name: 'Client/UI Build'
                   command: 'npm run frontend:build'
+            - run:
+                  name: 'Deploy Server'
+                  command: 'npm run backend:deploy'
+            - run:
+                  name: 'Check Server Health'
+                  command: 'npm run backend:health'
             - run:
                   name: 'Deploy Angular App'
                   command: 'npm run frontend:deploy'
