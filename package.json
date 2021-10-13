@@ -1,0 +1,8 @@
+{
+    "scripts": {
+        "backend:install": "cd server && npm install",
+        "backend:build": "cd server && npm run build",
+        "frontend:install": "cd client && npm install",
+        "frontend:build": "cd client && npm run build"
+    }
+}
