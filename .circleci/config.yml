@@ -23,7 +23,7 @@ jobs:
             - aws-cli/setup
             - run: 'pyenv versions'
             - run: 'pyenv global 3.8.5'
-            - eb-cli/setup
+            - run: 'sudo pip install awsebcli'
             - run:
                   name: 'Docker Postgres Setup'
                   command: 'npm run docker:setup'
