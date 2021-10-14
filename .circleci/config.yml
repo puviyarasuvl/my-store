@@ -14,7 +14,8 @@ orbs:
 jobs:
     build-and-deploy:
         # Use a Linux VM instead of docker environment
-        machine: true
+        machine:
+              image: cimg/base:stable-20.04
         working_directory: ~/repo # Default working directory, where your project will be cloned
         # Add steps to the job
         steps:
