@@ -65,12 +65,6 @@ jobs:
                   name: 'Building Client/UI'
                   command: 'npm run frontend:build'
             - run:
-                  name: 'Testing Server'
-                  command: 'npm run backend:test'
-            - run:
-                  name: 'Testing Client/UI'
-                  command: 'npm run front:test'
-            - run:
                   name: 'Deploying Server'
                   command: 'npm run backend:deploy'
             - run:
