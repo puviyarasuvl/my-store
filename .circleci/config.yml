@@ -73,6 +73,8 @@ jobs:
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+# build and test for all branches
+# deploy only for main branch
 workflows:
     build-test-deploy:
         jobs:
