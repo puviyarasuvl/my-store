@@ -22,7 +22,7 @@ jobs:
             - aws-cli/setup
             - run: 'sudo apt-get update' 
             - run: 'sudo apt-get install python-setuptools'
-            - run: 'sudo apt-get install python-easy_install virtualenv'
+            - run: 'sudo pip install virtualenv'
             - eb-cli/setup
             - run:
                   name: 'Docker Postgres Setup'
