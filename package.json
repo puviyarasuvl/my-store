@@ -8,6 +8,7 @@
         "backend:health": "cd server && eb health",
         "frontend:deploy": "cd client && npm run deploy",
         "backend:test": "cd server && npm run test",
+        "frontend:test": "cd client && npm run test",
         "docker:setup": "cd server && docker-compose up -d"
     }
 }
