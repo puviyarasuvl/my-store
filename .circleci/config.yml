@@ -13,16 +13,18 @@ orbs:
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
     build-and-deploy:
-        # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-        # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-        docker:
-            - image: cimg/base:stable
+        # Use a Linux VM instead of docker environment
+        machine: true
+        working_directory: ~/repo # Default working directory, where your project will be cloned
         # Add steps to the job
         steps:
             - node/install
             - checkout
             - aws-cli/setup
             - eb-cli/setup
+            - run:
+                  name: 'Docker Postgres Setup'
+                  command: 'docker-compose up -d'
             - run:
                   name: 'Installing Server Dependencies'
                   command: 'npm run backend:install'
@@ -35,6 +37,9 @@ jobs:
             - run:
                   name: 'Building Client/UI'
                   command: 'npm run frontend:build'
+            - run:
+                  name: 'Testing Server'
+                  command: 'npm run backend:test'
             - run:
                   name: 'Deploying Server'
                   command: 'npm run backend:deploy'
