@@ -26,8 +26,8 @@ jobs:
             - run:
                   name: 'Installing pip'
                   command: |
-                        'sudo apt update'
-                        'sudo apt install -y python-pip python-dev'
+                        'sudo apt-get update'
+                        'sudo apt-get install -y python-pip python-dev'
             - run: 
                   name: 'Installing eb-cli'
                   command: 'sudo pip install awsebcli'
