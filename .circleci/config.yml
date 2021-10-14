@@ -22,6 +22,7 @@ jobs:
             - checkout
             - aws-cli/setup
             - run: 'pyenv versions'
+            - run: 'pyenv global 3.8.5' 
             - eb-cli/setup
             - run:
                   name: 'Docker Postgres Setup'
