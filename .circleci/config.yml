@@ -21,11 +21,8 @@ jobs:
         steps:
             - checkout
             - aws-cli/setup
-            - run:
-                  name: 'Setting up python 3.8.5'
-                  command: |
-                        'pyenv versions'
-                        'pyenv global 3.8.5'
+            - run: 'pyenv versions'
+            - run: 'pyenv global 3.8.5'
             - run:
                   name: 'Installing pip'
                   command: |
