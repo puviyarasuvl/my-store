@@ -15,10 +15,10 @@ function create_user_and_database() {
 
 function create_schema_and_populate_data() {
 	echo "Creating Schema"
-	psql -d mystore_db -a -U${POSTGRES_USER} -f /docker-entrypoint-initdb.d/schema.sql
+	psql -d postgres -a -U${POSTGRES_USER} -f /docker-entrypoint-initdb.d/schema.sql
 
 	echo "Populating data"
-	psql -d mystore_db -a -U${POSTGRES_USER} <<-EOSQL
+	psql -d postgres -a -U${POSTGRES_USER} <<-EOSQL
 		INSERT INTO products (name, price, category, description, url) 
 		VALUES 
 		('Book', 9.99, 'Readings', 'You can read it!', 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'),

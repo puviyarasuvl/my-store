@@ -5,7 +5,7 @@ const orderModel = new OrderModel();
 describe('Testing Order Model', () => {
     describe('index method', () => {
         it('should return all the orders', async () => {
-            const result = await orderModel.index('testUser1');
+            const result = await orderModel.index('user@mystore.com');
 
             expect(result.length).toEqual(0);
         });
@@ -14,7 +14,11 @@ describe('Testing Order Model', () => {
     describe('Testing Order Products', () => {
         describe('addProduct method', () => {
             it('should create an open order and add product', async () => {
-                const result = await orderModel.addProduct(3, 5, 'testUser1');
+                const result = await orderModel.addProduct(
+                    3,
+                    5,
+                    'user@mystore.com'
+                );
 
                 expect(result).toEqual({
                     id: 1,
@@ -25,7 +29,11 @@ describe('Testing Order Model', () => {
             });
 
             it('should add the product successfully', async () => {
-                const result = await orderModel.addProduct(2, 3, 'testUser1');
+                const result = await orderModel.addProduct(
+                    2,
+                    3,
+                    'user@mystore.com'
+                );
                 expect(result).toEqual({
                     id: 2,
                     orderid: 1,
@@ -38,7 +46,7 @@ describe('Testing Order Model', () => {
 
     describe('index method', () => {
         it('should return all the orders', async () => {
-            const result = await orderModel.index('testUser1');
+            const result = await orderModel.index('user@mystore.com');
 
             expect(result.length).toEqual(1);
         });
@@ -49,7 +57,7 @@ describe('Testing Order Model', () => {
             const result = await orderModel.show(1);
 
             expect(result.id).toEqual(1);
-            expect(result.userid).toEqual('testUser1');
+            expect(result.userid).toEqual('user@mystore.com');
             expect(result.status).toEqual('open');
             expect(result.total).toEqual(1149.92);
         });

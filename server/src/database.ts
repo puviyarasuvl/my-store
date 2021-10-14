@@ -4,7 +4,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const {
-    POSTGRES_HOST,
+    POSTGRES_HOST_PROD,
+    POSTGRES_HOST_DEV,
     POSTGRES_DB,
     POSTGRES_TEST_DB,
     POSTGRES_USER,
@@ -18,14 +19,21 @@ console.log('Environment : ', ENV);
 
 if (ENV === 'dev') {
     pool = new Pool({
-        host: POSTGRES_HOST,
+        host: POSTGRES_HOST_DEV,
         database: POSTGRES_DB,
         user: POSTGRES_USER,
         password: POSTGRES_PASSWORD,
     });
 } else if (ENV === 'test') {
     pool = new Pool({
-        host: POSTGRES_HOST,
+        host: POSTGRES_HOST_DEV,
+        database: POSTGRES_TEST_DB,
+        user: POSTGRES_USER,
+        password: POSTGRES_PASSWORD,
+    });
+} else if (ENV === 'prod') {
+    pool = new Pool({
+        host: POSTGRES_HOST_PROD,
         database: POSTGRES_TEST_DB,
         user: POSTGRES_USER,
         password: POSTGRES_PASSWORD,
