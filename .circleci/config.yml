@@ -21,9 +21,19 @@ jobs:
         steps:
             - checkout
             - aws-cli/setup
-            - run: 'pyenv versions'
-            - run: 'pyenv global 3.8.5'
-            - run: 'sudo pip install awsebcli'
+            - run:
+                  name: 'Setting up python 3.8.5'
+                  command: |
+                        'pyenv versions'
+                        'pyenv global 3.8.5'
+            - run:
+                  name: 'Installing pip'
+                  command: |
+                        'sudo apt update'
+                        'sudo apt install -y python-pip python-dev'
+            - run: 
+                  name: 'Installing eb-cli'
+                  command: 'sudo pip install awsebcli'
             - run:
                   name: 'Docker Postgres Setup'
                   command: 'npm run docker:setup'
