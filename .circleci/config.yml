@@ -15,20 +15,18 @@ jobs:
     build-and-deploy:
         # Use a Linux VM instead of docker environment
         machine:
-              image: ubuntu-2004:202010-01
+            image: ubuntu-2004:202010-01
         working_directory: ~/repo # Default working directory, where your project will be cloned
         # Add steps to the job
         steps:
             - checkout
             - aws-cli/setup
             - run: 'pyenv versions'
-            - run: 'pyenv global 3.8.5' 
+            - run: 'pyenv global 3.8.5'
             - eb-cli/setup
             - run:
                   name: 'Docker Postgres Setup'
-                  command: |
-                        'cd server'
-                        'docker-compose up -d'
+                  command: 'npm run docker:setup'
             - run:
                   name: 'Installing Server Dependencies'
                   command: 'npm run backend:install'
