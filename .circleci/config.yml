@@ -12,7 +12,7 @@ orbs:
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-    build-and-deploy:
+    build-and-test:
         # Use a Linux VM instead of docker environment
         machine:
             image: ubuntu-2004:202010-01
@@ -20,12 +20,6 @@ jobs:
         # Add steps to the job
         steps:
             - checkout
-            - aws-cli/setup
-            - run: 'pyenv versions'
-            - run: 'pyenv global 3.8.5'
-            - run: 'sudo apt-get update'
-            - run: 'sudo apt-get install -y python-pip python-dev'
-            - run: 'sudo pip install awsebcli'
             - run:
                   name: 'Docker Postgres Setup'
                   command: 'npm run docker:setup'
@@ -44,6 +38,29 @@ jobs:
             - run:
                   name: 'Testing Server'
                   command: 'npm run backend:test'
+    deploy:
+        # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+        # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+        docker:
+            - image: cimg/base:stable
+        # Add steps to the job
+        steps:
+            - node/install
+            - checkout
+            - aws-cli/setup
+            - eb-cli/setup
+            - run:
+                  name: 'Installing Server Dependencies'
+                  command: 'npm run backend:install'
+            - run:
+                  name: 'Building Server'
+                  command: 'npm run backend:build'
+            - run:
+                  name: 'Installing Client/UI Dependencies'
+                  command: 'npm run frontend:install'
+            - run:
+                  name: 'Building Client/UI'
+                  command: 'npm run frontend:build'
             - run:
                   name: 'Deploying Server'
                   command: 'npm run backend:deploy'
@@ -57,6 +74,7 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-    build-and-deploy:
+    build-test-deploy:
         jobs:
-            - build-and-deploy
+            - build-and-test
+            - deploy
