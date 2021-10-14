@@ -20,8 +20,8 @@ jobs:
         steps:
             - checkout
             - aws-cli/setup
-            - run: 'sudo apt-get update sudo' 
-            - run: 'apt-get install virtualenv'
+            - run: 'sudo apt-get update' 
+            - run: 'sudo apt-get install virtualenv'
             - eb-cli/setup
             - run:
                   name: 'Docker Postgres Setup'
