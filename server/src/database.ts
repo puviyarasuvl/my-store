@@ -34,7 +34,7 @@ if (ENV === 'dev') {
 } else if (ENV === 'prod') {
     pool = new Pool({
         host: POSTGRES_HOST_PROD,
-        database: POSTGRES_TEST_DB,
+        database: POSTGRES_DB,
         user: POSTGRES_USER,
         password: POSTGRES_PASSWORD,
     });
